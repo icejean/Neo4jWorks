@@ -309,4 +309,4 @@ Issues and PRs are welcome! Whether it's new algorithms, new visualization appro
 
 ---
 
-*Made with 🐵 by 大圣*
+*Made with 🐵 by Jean*
