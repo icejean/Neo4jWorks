@@ -1,5 +1,7 @@
 # Neo4jWorks — Neo4j Graph Data Science 应用示例集
 
+[🌐 English](./README_EN.md) | [🇨🇳 中文](./README.md)
+
 ![Neo4j](https://img.shields.io/badge/Neo4j-2026.05.0-blue)
 ![GDS](https://img.shields.io/badge/GDS-2026.05.0-green)
 ![Java](https://img.shields.io/badge/Java-21-orange)
