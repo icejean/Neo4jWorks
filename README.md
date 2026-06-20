@@ -125,17 +125,23 @@ cp target/my-neo4j-functions-*.jar /path/to/neo4j/plugins/
 
 ### airports2 — 2D 交互式网络
 
+🌐 **在线示例**：[https://jeanye.cn:8443/neo4jExamples/index.jsp](https://jeanye.cn:8443/neo4jExamples/index.jsp)
+
 - **技术栈**：R Shiny + visNetwork + leaflet
 - **功能**：选择机场，指定路径深度，2D 拓扑网络 + 地图联动展示
 - **可视化**：节点按机场分类着色，边按距离着色，点击/悬浮交互
 
 ### airports3d — 3D 交互式网络
 
+🌐 **在线示例**：[https://jeanye.cn:8443/neo4jExamples/index3D.jsp](https://jeanye.cn:8443/neo4jExamples/index3D.jsp)
+
 - **技术栈**：R Shiny + threejs (graphjs)
 - **功能**：3D 力导向图，拖拽旋转，机场信息悬浮
 - **可视化**：立体球状布局，关系弧线展示
 
 ### airportsRings — 3D 航路环线分析
+
+🌐 **在线示例**：[https://jeanye.cn:8443/neo4jExamples/indexRings.jsp](https://jeanye.cn:8443/neo4jExamples/indexRings.jsp)
 
 - **技术栈**：R Shiny + threejs + 自定义分析
 - **功能**：查找从指定机场出发的**航路环线**（起点=终点），支持：
@@ -145,6 +151,8 @@ cp target/my-neo4j-functions-*.jar /path/to/neo4j/plugins/
 - **分析算法**：使用 `apoc.coll.median()` 中位数函数评估环线均衡性
 
 ### net3d — 通用 3D 网络分析
+
+🌐 **在线示例**：[https://jeanye.cn:8443/neo4jExamples/index3Dall.jsp](https://jeanye.cn:8443/neo4jExamples/index3Dall.jsp)
 
 - **技术栈**：R Shiny + threejs + 自定义 Cypher 输入
 - **通用性**：支持用户**自行编写 Cypher 语句**来：
