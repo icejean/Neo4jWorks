@@ -12,6 +12,10 @@
 > 本仓库虽以**机场航线网络**为例，但**适用于一切网络**——金融领域银行账户间的资金转账网络、税收领域的发票交易资金网络、社交网络、供应链网络等。可参考本示例开发自己的网络分析应用。
 
 > ⚠️ **版本说明**：本仓库的 Neo4j Community 与 GDS 库均已升级至 **2026.05.0**（最新版），`Cypher/Demo.cypher` 中的测试脚本已针对新版作了相应调整。但 Shiny APP 中嵌入的 Cypher 语句编写时基于的是 **Neo4j Community 5.x + GDS 2.5.5**（旧版），新版 GDS 的算法名称和参数可能有变化。读者在最新版上运行 Shiny APP 时，可能需要根据实际情况自行作一些调整。
+> 
+> 📥 **下载地址**：
+> - Neo4j Community 汉化版：[https://we-yun.com/blog/prod-56.html](https://we-yun.com/blog/prod-56.html)
+> - GDS 库：[https://github.com/neo4j/graph-data-science](https://github.com/neo4j/graph-data-science)
 
 ---
 
