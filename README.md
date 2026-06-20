@@ -224,6 +224,33 @@ cp target/my-neo4j-functions-*.jar /path/to/neo4j/plugins/
 
 ---
 
+## 📚 参考文章及图书
+
+### 博客文章
+
+- [最小树形图朱刘算法Python实现学习](https://www.meipian.cn/3fj0hqmk)
+- [Neo4j自定义过程开发之K最小生成树算法](https://www.meipian.cn/3gj6iqhz)
+- [Shiny 网络分析APP示例详解](https://www.meipian.cn/445rl90n)
+- [机场航线环路分析](https://www.meipian.cn/451a6tnz)
+- [在网络分析中使用Neo4j用户自定义函数与过程](https://www.meipian.cn/459u8wpz)
+
+### 知乎专栏
+
+- [更新Neo4j Open Graph Data Science扩展插件](https://zhuanlan.zhihu.com/p/677004443)
+- [开发Neo4j Open GDS 2.5扩展插件算法和过程](https://zhuanlan.zhihu.com/p/677746295)
+- [Neo4j Community 5.x+Open GDS 2.5最小树形图](https://zhuanlan.zhihu.com/p/678160388)
+- [第十七章 Neo4j图数据库应用开发 第一、二节](https://zhuanlan.zhihu.com/p/680079397)
+- [第十七章 Neo4j图数据库应用开发 第三节](https://zhuanlan.zhihu.com/p/680083515)
+- [第十七章 Neo4j图数据库应用开发 第四节](https://zhuanlan.zhihu.com/p/680085122)
+- [通用3D网络分析Shiny APP示例](https://zhuanlan.zhihu.com/p/703509660)
+
+### 图书
+
+- [微观税收分析专著：《图解税收大数据分析》](https://jeanye.cn/taxanalysis.html)
+- [译著：《精通Shiny》](https://jeanye.cn/masteringshiny.html)
+
+---
+
 ## 📝 许可
 
 Apache License 2.0 — 详见 [LICENSE](LICENSE)
