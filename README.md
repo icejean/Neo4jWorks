@@ -217,6 +217,14 @@ sudo apt install libcurl4-openssl-dev libssl-dev libxml2-dev \
                  libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 ```
 
+> Neo4j Community 安装配置请读者自行解决，此处不再赘述。
+
+### 环境搭建参考
+
+- [在WSL上搭建GPU Linux Server深度学习环境](https://zhuanlan.zhihu.com/p/694938539)
+- [在Ubuntu 22上编译安装R语言环境](https://zhuanlan.zhihu.com/p/695584437)
+- [在WSL2 Ubuntu22上集成 Java EE、R与Python](https://zhuanlan.zhihu.com/p/700126962)
+
 ---
 
 ## 🚀 快速开始
