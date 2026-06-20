@@ -181,6 +181,44 @@ cp target/my-neo4j-functions-*.jar /path/to/neo4j/plugins/
 
 ---
 
+## ⚙️ 安装补充说明
+
+### neo4jkeys 配置
+
+`scripts/neo4jAirports.py` 使用 `from neo4j import neo4jkeys` 引用自定义凭证模块。
+读者需在 `scripts/` 目录下手动创建 `neo4jkeys.py`，内容如下：
+
+```python
+user = "neo4j"       # 你的 Neo4j 用户名
+password = "xxxx"    # 你的 Neo4j 密码
+```
+
+> `neo4jkeys.py` 已在 `.gitignore` 中，不会被提交到仓库。
+
+### R 包依赖
+
+Shiny APP 所需 R 包如下（在 R 中执行 `install.packages()`）：
+
+```r
+install.packages(c(
+  "shiny", "shinydashboard", "shinythemes", "shinyWidgets",
+  "visNetwork", "leaflet", "threejs",
+  "reticulate", "data.table", "dplyr", "DT"
+))
+```
+
+### Linux 系统依赖
+
+以下系统包可能在编译安装上述 R 包时需要：
+
+```bash
+# Ubuntu / Debian
+sudo apt install libcurl4-openssl-dev libssl-dev libxml2-dev \
+                 libudunits2-dev libgdal-dev libgeos-dev libproj-dev
+```
+
+---
+
 ## 🚀 快速开始
 
 ### 前提条件
@@ -189,7 +227,7 @@ cp target/my-neo4j-functions-*.jar /path/to/neo4j/plugins/
 - Java 21+
 - Gradle 9.5+（或使用 `gradlew`）
 - Maven 3.9+
-- R 4.x + Shiny + shinydashboard + reticulate + visNetwork + threejs
+- R 4.x + 上述 R 包
 - Python 3.x + neo4j driver + pandas
 
 ### 步骤
