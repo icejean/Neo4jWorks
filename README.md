@@ -81,7 +81,7 @@ cp build/libs/my-gds-ext-*.jar /path/to/neo4j/plugins/   # 部署到 Neo4j
 
 | 函数 | 说明 |
 |---|---|
-| `apoc.coll.median([1,2,3])` | 求数组的中位数 |
+| `apoc.coll.median([1,2,3])` | 求数组的中位数，主要用于查找资金流中的**稳定强环路**，各段距离的变化幅度由阈值参数控制 |
 
 > 与 `apoc.agg.median()` 不同：`apoc.agg.median` 是聚合函数（按列名），而 `apoc.coll.median` 是列表函数（按数组值）。
 

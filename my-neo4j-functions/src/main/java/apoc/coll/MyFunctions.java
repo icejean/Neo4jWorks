@@ -11,7 +11,7 @@ import java.util.List;
 public class MyFunctions {
 	
     @UserFunction
-    @Description("apoc.coll.median([0.5,1,2.3])")
+    @Description("apoc.coll.median([0.5,1,2.3]) - 查找资金流中的稳定强环路，各段距离的变化幅度由阈值参数控制")
     public Double median(@Name("numbers") List<Number> values) {
     	if(values == null || values.isEmpty()) return null;
         Collections.sort(values, new Comparator<Number>() {
