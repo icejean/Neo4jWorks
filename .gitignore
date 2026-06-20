@@ -1,0 +1,44 @@
+# ── Java / Gradle / Maven ──
+.gradle/
+build/
+target/
+*.jar
+*.class
+*.war
+*.ear
+*.iml
+.idea/
+.settings/
+.classpath
+.project
+gradle/wrapper/gradle-wrapper.jar
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+*.egg
+.venv/
+venv/
+
+# ── Jupyter ──
+.ipynb_checkpoints/
+
+# ── R ──
+.Rhistory
+.RData
+.Rproj.user
+*.Rproj
+
+# ── OS ──
+.DS_Store
+Thumbs.db
+
+# ── Logs ──
+*.log
+
+# ── Secrets ──
+**/neo4jkeys.py
+**/.env
+**/credentials.*

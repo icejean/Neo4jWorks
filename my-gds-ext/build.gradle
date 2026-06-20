@@ -1,0 +1,138 @@
+plugins {
+    id 'java'
+    id 'com.gradleup.shadow' version '8.3.5'
+}
+
+// ─── 版本定义 ─────────────────────────────────────────────
+def props = new Properties()
+file("VERSION").withInputStream { props.load(it) }
+
+ext {
+    gdsVersion            = props.getProperty('GDS_VERSION', '2026.05.0')
+    neo4jVersion          = props.getProperty('NEO4J_VERSION', '2026.02.+')
+    immutablesVersion     = props.getProperty('IMMUTABLES_VERSION', '2.10.1')
+    jetbrainsAnnotations  = '24.1.0'
+    junitVersion          = props.getProperty('JUNIT_VERSION', '6.0.1')
+}
+
+description = 'My Custom GDS Extensions'
+group = 'org.neo4j.gds'
+version = '2026.05.0'
+
+// ─── 仓库 ─────────────────────────────────────────────────
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+// ─── 依赖 ─────────────────────────────────────────────────
+dependencies {
+    // ── GDS 核心模块（compileOnly：运行时由 Neo4j 的 GDS 插件提供） ──
+    compileOnly "org.neo4j.gds:algo:$gdsVersion"
+    compileOnly "org.neo4j.gds:path-finding-configs:$gdsVersion"
+    compileOnly "org.neo4j.gds:path-finding-params:$gdsVersion"
+    compileOnly "org.neo4j.gds:algo-common:$gdsVersion"
+    compileOnly "org.neo4j.gds:algorithms-machinery:$gdsVersion"
+    compileOnly "org.neo4j.gds:algorithms-procedure-facade:$gdsVersion"
+    compileOnly "org.neo4j.gds:annotations:$gdsVersion"
+    compileOnly "org.neo4j.gds:config-api:$gdsVersion"
+    compileOnly "org.neo4j.gds:core:$gdsVersion"
+    compileOnly "org.neo4j.gds:core-write:$gdsVersion"
+    compileOnly "org.neo4j.gds:executor:$gdsVersion"
+    compileOnly "org.neo4j.gds:graph-schema-api:$gdsVersion"
+    compileOnly "org.neo4j.gds:memory-usage:$gdsVersion"
+    compileOnly "org.neo4j.gds:metrics-api:$gdsVersion"
+    compileOnly "org.neo4j.gds:model-catalog-api:$gdsVersion"
+    compileOnly "org.neo4j.gds:proc-common:$gdsVersion"
+    compileOnly "org.neo4j.gds:proc-path-finding:$gdsVersion"
+    compileOnly "org.neo4j.gds:progress-tracking:$gdsVersion"
+    compileOnly "org.neo4j.gds:termination:$gdsVersion"
+    compileOnly "org.neo4j.gds:transaction:$gdsVersion"
+
+    // ── Neo4j API（compileOnly） ──
+    compileOnly "org.neo4j:neo4j:$neo4jVersion"
+    compileOnly "org.neo4j:neo4j-procedure-api:$neo4jVersion"
+
+    // ── 注解处理器 ──
+    annotationProcessor "org.immutables:value:$immutablesVersion"
+    annotationProcessor "org.neo4j.gds:config-generator:$gdsVersion"
+
+    compileOnly "org.jetbrains:annotations:$jetbrainsAnnotations"
+    compileOnly "org.immutables:value-annotations:$immutablesVersion"
+
+    // ── 测试依赖 ──
+    testAnnotationProcessor "org.neo4j.gds:config-generator:$gdsVersion"
+
+    testImplementation "org.neo4j.community:it-test-support:$neo4jVersion"
+    testImplementation "org.neo4j.gds:test-utils:$gdsVersion"
+    testImplementation "org.neo4j.gds:core:$gdsVersion"
+    testImplementation "org.neo4j.gds:config-api:$gdsVersion"
+    testImplementation "org.neo4j.gds:progress-tracking:$gdsVersion"
+    testImplementation "org.neo4j.gds:opengds-extension:$gdsVersion"
+    testImplementation "org.neo4j.gds:algo:$gdsVersion"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+}
+
+// ─── Java 编译 ────────────────────────────────────────────
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += [
+        '-parameters',
+        '-Xlint:all,-cast,-deprecation,-processing,-serial,-try,-unchecked,-varargs,-rawtypes,-removal',
+    ]
+    options.forkOptions.jvmArgs += '--add-opens=java.base/java.lang.invoke=ALL-UNNAMED'
+    options.forkOptions.jvmArgs += '--add-opens=java.base/java.nio=ALL-UNNAMED'
+    options.forkOptions.jvmArgs += '--add-opens=java.base/java.lang=ALL-UNNAMED'
+}
+
+// ─── 测试 ─────────────────────────────────────────────────
+test {
+    useJUnitPlatform()
+    maxHeapSize = '4G'
+
+    jvmArgs += '--add-opens=java.base/java.lang=ALL-UNNAMED'
+    jvmArgs += '--add-opens=java.base/java.lang.invoke=ALL-UNNAMED'
+    jvmArgs += '--add-opens=java.base/java.nio=ALL-UNNAMED'
+    jvmArgs += '--add-opens=java.base/java.util.stream=ALL-UNNAMED'
+    jvmArgs += '--add-opens=java.base/sun.net.www.protocol.http=ALL-UNNAMED'
+    jvmArgs += '--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED'
+}
+
+// ─── Shadow JAR（打包为 Neo4j 插件） ──────────────────────
+shadowJar {
+    archiveBaseName = 'my-gds-ext'
+    archiveClassifier = ''
+    archiveVersion = project.version
+
+    exclude 'META-INF/versions/**/*'
+    mergeServiceFiles()
+
+    manifest {
+        attributes(
+            'Implementation-Title': 'My GDS Extensions',
+            'Implementation-Version': project.version,
+            'Implementation-Vendor': 'Custom',
+        )
+    }
+}
+
+// ─── 额外任务：列出当前依赖版本 ──────────────────────────
+tasks.register('showVersions') {
+    doLast {
+        println "┌───────────────────────────────────────┐"
+        println "│ GDS version:      ${gdsVersion}"
+        println "│ Neo4j version:    ${neo4jVersion}"
+        println "│ Gradle:           ${gradle.gradleVersion}"
+        println "│ Java:             ${System.getProperty('java.version')}"
+        println "└───────────────────────────────────────┘"
+    }
+}
+
