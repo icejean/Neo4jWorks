@@ -14,7 +14,7 @@ Graph algorithm extension plugins based on Neo4j Graph Data Science (GDS), plus 
 > ⚠️ **Version Note**: This repo's Neo4j Community and GDS library have been upgraded to **2026.05.0** (latest). The `Cypher/Demo.cypher` test scripts have been adjusted accordingly. However, the Cypher statements embedded in the Shiny apps were written for **Neo4j Community 5.x + GDS 2.5.5** (older version). Newer GDS versions may have changed algorithm names and parameters. When running Shiny apps on the latest version, you may need to make adjustments yourself.
 > 
 > 📥 **Downloads**:
-> - Neo4j Community (Chinese localized): [https://we-yun.com/blog/prod-56.html](https://we-yun.com/blog/prod-56.html)
+> - Neo4j Community Edition: [https://neo4j.com/product/community-edition/](https://neo4j.com/product/community-edition/)
 > - GDS Library: [https://github.com/neo4j/graph-data-science](https://github.com/neo4j/graph-data-science)
 
 ---
